@@ -1,5 +1,4 @@
 const express = require('express');
-const compression = require('compression');
 const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
