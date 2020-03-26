@@ -48,7 +48,7 @@ Resources:
   HomeFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: server
+      Handler: server.handler
       Description: Display hello world
       Events:
         Api:
