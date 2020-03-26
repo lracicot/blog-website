@@ -1,21 +1,14 @@
-const express = require('express')
-const next = require('next')
+const awsServerlessExpress = require('aws-serverless-express')
+const app = require('./app')
+const binaryMimeTypes = [
+  'application/octet-stream',
+  'font/eot',  'font/opentype',
+  'font/otf',
+  'image/jpeg',
+  'image/png',
+  'image/svg+xml'
+];
 
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
+const server = awsServerlessExpress.createServer(app, null, binaryMimeTypes)
 
-// app.prepare()
-// .then(() => {
-  const server = express()
-
-  server.get('*', (req, res) => {
-    return handle(req, res)
-  })
-
-exports.handler = server;
-// })
-// .catch((ex) => {
-//   console.error(ex.stack)
-//   process.exit(1)
-// })
+exports.handler = (event, context) =>  awsServerlessExpress.proxy(server, event, context)
