@@ -67,7 +67,7 @@ Resources:
     Type: AWS::ApiGateway::BasePathMapping
     Properties:
       DomainName: !Ref DomainName
-      RestApiId: !Ref WebsiteApi
+      # RestApiId: !Ref WebsiteApi
       Stage: Prod
 
   DNSRecord:
