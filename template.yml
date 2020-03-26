@@ -39,8 +39,10 @@ Globals:
 Resources:
 
   # API setup with authorizer
-  # WebsiteApi:
-  #   Type: AWS::Serverless::Api
+  WebsiteApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
 
   # This is a Lambda function config associated with the source code: get-all-posts.js
   HomeFunction:
@@ -52,6 +54,7 @@ Resources:
         Api:
           Type: Api
           Properties:
+            RestApiId: !Ref WebsiteApi
             Path: /
             Method: GET
 
@@ -67,7 +70,7 @@ Resources:
     Type: AWS::ApiGateway::BasePathMapping
     Properties:
       DomainName: !Ref DomainName
-      # RestApiId: !Ref WebsiteApi
+      RestApiId: !Ref WebsiteApi
       Stage: Prod
 
   DNSRecord:
