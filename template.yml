@@ -17,13 +17,9 @@ Globals:
     Runtime: nodejs12.x
     MemorySize: 128
     Timeout: 100
-    # Environment:
-    #   Variables:
-        # Make table name accessible as environment variable from function code during execution
-        # POST_TABLE: !Ref PostTable
-        # ASSET_TABLE: !Ref AssetTable
-        # UPLOAD_BUCKET: !Ref PublicAssetBucket
-        # ASSETS_URL: !GetAtt AssetsCloudFrontDistribution.DomainName
+    Environment:
+      Variables:
+        NODE_ENV: production
 
   # Api:
   #   BinaryMediaTypes:
@@ -48,6 +44,7 @@ Resources:
   HomeFunction:
     Type: AWS::Serverless::Function
     Properties:
+      CodeUri: ./
       Handler: server.handler
       Description: Display hello world
       Events:
