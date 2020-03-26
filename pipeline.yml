@@ -209,6 +209,8 @@ Resources:
                   - iam:DeleteRole
                   - iam:getRolePolicy
                   - iam:DeleteRolePolicy
+                  - iam:AttachRolePolicy
+                  - iam:DetachRolePolicy
                 Resource: "*"
               - Effect: Allow
                 Action:
