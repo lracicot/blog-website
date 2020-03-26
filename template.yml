@@ -86,23 +86,3 @@ Outputs:
     Value: !Join ['', ['https://', !Ref DNSRecord]]
     Export:
       Name: !Join [ '-', [!Ref 'AWS::StackName', 'ApiUrl']]
-  CognitoUserPool:
-    Description: Cognito User Pool
-    Value: !Ref CognitoUserPool
-    Export:
-      Name: !Join [ '-', [!Ref 'AWS::StackName', 'CognitoUserPool']]
-  CognitoCliAppClient:
-    Description: Cognito User Pool App
-    Value: !Ref CognitoCliAppClient
-    Export:
-      Name: !Join [ '-', [!Ref 'AWS::StackName', 'CognitoCliAppClient']]
-  CognitoDomain:
-    Description: Cognito User Pool Domain
-    Value: !Join
-      - ''
-      - - !Ref CognitoUserPoolDomain
-        - '.auth.'
-        - !Ref AWS::Region
-        - '.amazoncognito.com'
-    Export:
-      Name: !Join [ '-', [!Ref 'AWS::StackName', 'CognitoUserPoolDomain']]
