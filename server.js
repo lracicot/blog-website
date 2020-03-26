@@ -19,4 +19,4 @@ server.get('/dogs/:breed', (req, res) => {
 })
 server.get('*', (req, res) => handle(req, res))
 
-module.exports = server
+exports.handler = server
