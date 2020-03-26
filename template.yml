@@ -1,0 +1,112 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+
+# Transform section specifies one or more macros that AWS CloudFormation uses to process your template
+Transform:
+- AWS::Serverless-2016-10-31
+
+Parameters:
+  # DomainName:
+  #   Type: String
+  # CertificateArn:
+  #   Type: String
+  #   Default: arn:aws:acm:us-east-1:281217159305:certificate/824fa586-f47b-41a4-a345-2a86c7c15416
+
+Globals:
+  Function:
+    Runtime: nodejs12.x
+    MemorySize: 128
+    Timeout: 100
+    Environment:
+      Variables:
+        # Make table name accessible as environment variable from function code during execution
+        # POST_TABLE: !Ref PostTable
+        # ASSET_TABLE: !Ref AssetTable
+        # UPLOAD_BUCKET: !Ref PublicAssetBucket
+        # ASSETS_URL: !GetAtt AssetsCloudFrontDistribution.DomainName
+
+  # Api:
+  #   BinaryMediaTypes:
+  #     - "image~1jpeg"
+  #     - "image~1png"
+  #   Cors:
+  #     AllowMethods: "'*'"
+  #     AllowHeaders: "'*'"
+  #     AllowOrigin: "'*'"
+  #   Auth:
+  #     DefaultAuthorizer: AdminAuthorizer
+
+Resources:
+
+  # API setup with authorizer
+  WebsiteApi:
+    Type: AWS::Serverless::Api
+
+  # This is a Lambda function config associated with the source code: get-all-posts.js
+  GetAllPostsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: server
+      Description: Get all the posts from dynamodb table
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref PostTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref WebsiteApi
+            Path: /
+            Method: GET
+
+  # Domain name setup
+  WebsiteDomainName:
+    Type: AWS::ApiGateway::DomainName
+    Properties:
+      CertificateArn: !Ref CertificateArn
+      DomainName: !Ref DomainName
+
+  WebsiteApiBasePathMapping:
+    DependsOn: WebsiteDomainName
+    Type: AWS::ApiGateway::BasePathMapping
+    Properties:
+      DomainName: !Ref DomainName
+      RestApiId: !Ref WebsiteApi
+      Stage: Prod
+
+  DNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: Z2E6WEFRHH6156
+      Name: !Ref DomainName
+      Type: A
+      AliasTarget:
+        HostedZoneId: !GetAtt WebsiteDomainName.DistributionHostedZoneId
+        DNSName: !GetAtt WebsiteDomainName.DistributionDomainName
+
+Outputs:
+  ApiUrl:
+    Description: Url of the api
+    Value: !Join ['', ['https://', !Ref DNSRecord]]
+    Export:
+      Name: !Join [ '-', [!Ref 'AWS::StackName', 'ApiUrl']]
+  CognitoUserPool:
+    Description: Cognito User Pool
+    Value: !Ref CognitoUserPool
+    Export:
+      Name: !Join [ '-', [!Ref 'AWS::StackName', 'CognitoUserPool']]
+  CognitoCliAppClient:
+    Description: Cognito User Pool App
+    Value: !Ref CognitoCliAppClient
+    Export:
+      Name: !Join [ '-', [!Ref 'AWS::StackName', 'CognitoCliAppClient']]
+  CognitoDomain:
+    Description: Cognito User Pool Domain
+    Value: !Join
+      - ''
+      - - !Ref CognitoUserPoolDomain
+        - '.auth.'
+        - !Ref AWS::Region
+        - '.amazoncognito.com'
+    Export:
+      Name: !Join [ '-', [!Ref 'AWS::StackName', 'CognitoUserPoolDomain']]
