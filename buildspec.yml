@@ -6,7 +6,7 @@ phases:
       # - pip install aws-sam-cli
       # Install all dependencies (including dependencies for running tests)
       - npm install
-      - npm build
+      - npm run build
   pre_build:
     commands:
       - npm prune --production
