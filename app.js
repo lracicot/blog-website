@@ -8,7 +8,6 @@ const handle = app.getRequestHandler();
 // app.prepare()
 // .then(() => {
 const server = express();
-server.use(compression);
 
 server.get('*', (req, res) => {
   return handle(req, res);
