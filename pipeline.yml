@@ -89,7 +89,7 @@ Resources:
                 Version: 1
                 Provider: S3
               InputArtifacts:
-                - Name: AppBuild
+                - Name: WebsiteBuildSource
               Configuration:
                 BucketName: !Ref HostingBucket
                 Extract: true
