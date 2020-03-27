@@ -33,7 +33,6 @@ Globals:
   #     DefaultAuthorizer: AdminAuthorizer
 
 Resources:
-
   # API setup with authorizer
   WebsiteApi:
     Type: AWS::Serverless::Api
@@ -44,7 +43,6 @@ Resources:
   HomeFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./
       Handler: server.handler
       Description: Display hello world
       Events:

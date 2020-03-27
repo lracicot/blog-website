@@ -37,6 +37,13 @@ Resources:
         - Status: Enabled
           ExpirationInDays: '30'
 
+  HostingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
@@ -58,7 +65,7 @@ Resources:
                 BranchName: !Ref BranchName
                 PollForSourceChanges: false
               OutputArtifacts:
-                - Name: ApiPostSource
+                - Name: WebisteSource
         - Name: Build
           Actions:
             - Name: BuildAction
@@ -68,13 +75,25 @@ Resources:
                 Version: 1
                 Provider: CodeBuild
               InputArtifacts:
-                - Name: ApiPostSource
+                - Name: WebisteSource
               OutputArtifacts:
-                - Name: ApiPostBuild
+                - Name: WebsiteBuild
               Configuration:
                 ProjectName: !Ref BuildStage
         - Name: Deploy
           Actions:
+            - Name: DeployToS3
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Version: 1
+                Provider: S3
+              InputArtifacts:
+                - Name: AppBuild
+              Configuration:
+                BucketName: !Ref HostingBucket
+                Extract: true
+                CannedACL: public-read
             - Name: DeployAction
               ActionTypeId:
                 Category: Deploy
@@ -82,16 +101,16 @@ Resources:
                 Version: 1
                 Provider: CloudFormation
               InputArtifacts:
-                - Name: ApiPostSource
-                - Name: ApiPostBuild
+                - Name: WebisteSource
+                - Name: WebsiteBuild
               Configuration:
                 ActionMode: CREATE_UPDATE
                 Capabilities: CAPABILITY_AUTO_EXPAND,CAPABILITY_NAMED_IAM
                 RoleArn: !GetAtt CloudFormationRole.Arn
                 ParameterOverrides: !Sub '{"DomainName": "${DomainName}","CertificateArn": "${CertificateArn}"}'
                 StackName: !Ref StackName
-                # TemplateConfiguration: 'ApiPostBuild::parameters.json'
-                TemplatePath: 'ApiPostBuild::template-export.yml'
+                # TemplateConfiguration: 'WebsiteBuild::parameters.json'
+                TemplatePath: 'WebsiteBuild::template-export.yml'
 
   SourceRepository:
     Type: AWS::CodeCommit::Repository
@@ -105,7 +124,7 @@ Resources:
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Artifacts:
         Type: CODEPIPELINE
-        Name: ApiPostBuild
+        Name: WebsiteBuild
       Source:
         Type: CODEPIPELINE
       Environment:
@@ -113,8 +132,8 @@ Resources:
         Type: LINUX_CONTAINER
         Image: "aws/codebuild/standard:2.0"
         EnvironmentVariables:
-          - Name: DEPLOY_BUCKET
-            Value: !Ref DeployBucket
+          - Name: HOSTING_BUCKET
+            Value: !Ref HostingBucket
       Cache:
         Type: LOCAL
         Modes:
