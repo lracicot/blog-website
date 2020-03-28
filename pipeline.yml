@@ -315,6 +315,17 @@ Resources:
                   - sns:Unsubscribe
                   - sns:ListSubscriptions
                 Resource: "*"
+              - Effect: Allow
+                Action:
+                  - cloudfront:CreateCloudFrontOriginAccessIdentity
+                  - cloudfront:DeleteCloudFrontOriginAccessIdentity
+                  - cloudfront:GetCloudFrontOriginAccessIdentityConfig
+                  - cloudfront:GetDistribution
+                  - cloudfront:CreateDistribution
+                  - cloudfront:DeleteDistribution
+                  - cloudfront:UpdateDistribution
+                  - cloudfront:TagResource
+                Resource: "*"
 
   RepositoryUpdateEventRole:
     Type: AWS::IAM::Role

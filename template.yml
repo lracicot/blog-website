@@ -75,11 +75,8 @@ Resources:
         Origins:
           - DomainName: !Join ['', ['https://', !GetAtt WebsiteApi.RootResourceId, '.execute-api.', !Ref 'AWS::Region', '.amazonaws.com']]
             Id: apiGateway
-            S3OriginConfig:
-              OriginAccessIdentity: !Join
-                - ''
-                - - origin-access-identity/cloudfront/
-                  - !Ref OriginAccessIdentity
+            CustomOriginConfig:
+              OriginProtocolPolicy: https-only
         Enabled: true
         DefaultCacheBehavior:
           AllowedMethods:
