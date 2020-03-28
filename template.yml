@@ -75,6 +75,7 @@ Resources:
         Origins:
           - DomainName: !Join ['', [!Ref WebsiteApi, '.execute-api.', !Ref 'AWS::Region', '.amazonaws.com']]
             Id: apiGateway
+            OriginPath: /Prod
             CustomOriginConfig:
               OriginProtocolPolicy: https-only
         Enabled: true
