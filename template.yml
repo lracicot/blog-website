@@ -125,7 +125,7 @@ Resources:
   #     DomainName: !Ref DomainName
 
   WebsiteApiBasePathMapping:
-    DependsOn: WebsiteDomainName
+    # DependsOn: WebsiteDomainName
     Type: AWS::ApiGateway::BasePathMapping
     Properties:
       DomainName: !Ref DomainName
