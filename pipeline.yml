@@ -192,6 +192,16 @@ Resources:
                   - cloudformation:DeleteStack
                   - cloudformation:UpdateStack
                 Resource: "*"
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:GetBucketVersioning
+                  - s3:PutObject
+                  - s3:PutObjectAcl
+                Resource:
+                  - !GetAtt HostingBucket.Arn
+                  - !Join ['', [!GetAtt HostingBucket.Arn, '/*']]
 
   CloudFormationRole:
     Type: AWS::IAM::Role
