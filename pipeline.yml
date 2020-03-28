@@ -108,7 +108,7 @@ Resources:
                 ActionMode: CREATE_UPDATE
                 Capabilities: CAPABILITY_AUTO_EXPAND,CAPABILITY_NAMED_IAM
                 RoleArn: !GetAtt CloudFormationRole.Arn
-                ParameterOverrides: !Sub '{"DomainName": "${DomainName}","CertificateArn": "${CertificateArn}"}'
+                ParameterOverrides: !Sub '{"DomainName":"${DomainName}","CertificateArn":"${CertificateArn}","HostingBucketDomainName":"${HostingBucket}"}'
                 StackName: !Ref StackName
                 # TemplateConfiguration: 'WebsiteBuild::parameters.json'
                 TemplatePath: 'WebsiteBuild::template-export.yml'
