@@ -73,7 +73,7 @@ Resources:
           MinimumProtocolVersion: TLSv1_2016
           SslSupportMethod: sni-only
         Origins:
-          - DomainName: !Join ['', ['https://', !GetAtt WebsiteApi.RootResourceId, '.execute-api.', !Ref 'AWS::Region', '.amazonaws.com']]
+          - DomainName: !Join ['', [!GetAtt WebsiteApi.RootResourceId, '.execute-api.', !Ref 'AWS::Region', '.amazonaws.com']]
             Id: apiGateway
             CustomOriginConfig:
               OriginProtocolPolicy: https-only
