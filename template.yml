@@ -151,3 +151,7 @@ Outputs:
     Value: !Join ['', ['https://', !Ref DNSRecord]]
     Export:
       Name: !Join [ '-', [!Ref 'AWS::StackName', 'ApiUrl']]
+  WebsiteApi:
+    Value: !Ref WebsiteApi
+  RootResourceId:
+    Value: WebsiteApi.RootResourceId
