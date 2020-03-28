@@ -78,6 +78,7 @@ Resources:
                 - Name: WebisteSource
               OutputArtifacts:
                 - Name: WebsiteBuild
+                - Name: WebsiteBuildSource
               Configuration:
                 ProjectName: !Ref BuildStage
         - Name: Deploy
@@ -134,6 +135,8 @@ Resources:
         EnvironmentVariables:
           - Name: HOSTING_BUCKET
             Value: !Ref HostingBucket
+          - Name: DEPLOY_BUCKET
+            Value: !Ref DeployBucket
       Cache:
         Type: LOCAL
         Modes:
