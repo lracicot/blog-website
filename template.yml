@@ -54,6 +54,12 @@ Resources:
             Method: GET
 
   # Domain name setup
+  OriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: CloudFrontOriginAccessIdentityConfig
+
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     # DependsOn:
@@ -69,11 +75,11 @@ Resources:
         Origins:
           - DomainName: !Join ['', ['https://', !GetAtt WebsiteApi.RootResourceId, '.execute-api.', !Ref 'AWS::Region', '.amazonaws.com']]
             Id: apiGateway
-            # S3OriginConfig:
-            #   OriginAccessIdentity: !Join
-            #     - ''
-            #     - - origin-access-identity/cloudfront/
-            #       - !Ref OriginAccessIdentity
+            S3OriginConfig:
+              OriginAccessIdentity: !Join
+                - ''
+                - - origin-access-identity/cloudfront/
+                  - !Ref OriginAccessIdentity
         Enabled: true
         DefaultCacheBehavior:
           AllowedMethods:
