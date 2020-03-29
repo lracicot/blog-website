@@ -7,7 +7,7 @@ const layoutStyle = {
   border: "1px solid #DDD"
 };
 
-const withLayout = async Page => {
+const withLayout = Page => {
   // const pageProps = Page.getInitialProps ? await Page.getInitialProps() : {};
   const layout = props => (
     <div style={layoutStyle}>
