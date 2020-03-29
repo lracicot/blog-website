@@ -77,7 +77,7 @@ Resources:
           - !Ref DomainName
         ViewerCertificate:
           AcmCertificateArn: !Ref CertificateArn
-          MinimumProtocolVersion: TLSv1_2016
+          MinimumProtocolVersion: TLSv1.2_2018
           SslSupportMethod: sni-only
         Origins:
           - DomainName: !Join ['', [!Ref WebsiteApi, '.execute-api.', !Ref 'AWS::Region', '.amazonaws.com']]
@@ -110,20 +110,6 @@ Resources:
           MaxTTL: 31536000
           MinTTL: 60
           Compress: true
-        DefaultRootObject: index.html
-        CustomErrorResponses:
-          - ErrorCachingMinTTL: 300
-            ErrorCode: 400
-            ResponseCode: 200
-            ResponsePagePath: /
-          - ErrorCachingMinTTL: 300
-            ErrorCode: 403
-            ResponseCode: 200
-            ResponsePagePath: /
-          - ErrorCachingMinTTL: 300
-            ErrorCode: 404
-            ResponseCode: 200
-            ResponsePagePath: /
 
   DNSRecord:
     Type: AWS::Route53::RecordSet
