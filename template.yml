@@ -110,7 +110,7 @@ Resources:
           MaxTTL: 31536000
           MinTTL: 60
           Compress: true
-        CacheBehavior:
+        CacheBehaviors:
           - PathPattern: '_next/*'
             TargetOriginId: hostingHostingBucket
             ViewerProtocolPolicy: redirect-to-https
