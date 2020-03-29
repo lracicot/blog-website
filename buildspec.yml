@@ -24,4 +24,4 @@ artifacts:
         - template-export.yml
     WebsiteBuildSource:
       files:
-        - '_next/*'
+        - '**/*'
