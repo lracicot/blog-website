@@ -58,19 +58,6 @@ Resources:
             RestApiId: !Ref WebsiteApi
             Path: /
             Method: GET
-            
-  HomeFunctionHead:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: server.handler
-      Description: Display hello world
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            RestApiId: !Ref WebsiteApi
-            Path: /
-            Method: HEAD
 
   # Domain name setup
   OriginAccessIdentity:
