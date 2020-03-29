@@ -1,7 +1,12 @@
+import Link from 'next/Link';
+
 export default function Index() {
   return (
     <div>
-      <p>Hello Next.js</p>
+      <Link href="/about">
+        <a>About</a>
+      </Link>
+      <p>Louis Racicot</p>
     </div>
   );
 }

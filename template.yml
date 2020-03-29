@@ -57,7 +57,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref WebsiteApi
-            Path: /
+            Path: /{page}
             Method: GET
 
   # Domain name setup
@@ -123,9 +123,6 @@ Resources:
             Compress: true
             ForwardedValues:
               QueryString: false
-
-
-
 
   DNSRecord:
     Type: AWS::Route53::RecordSet
