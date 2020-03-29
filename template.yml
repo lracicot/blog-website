@@ -46,12 +46,37 @@ Resources:
         AllowHeaders: "'*'"
         AllowOrigin: "'*'"
 
-  # This is a Lambda function config associated with the source code: get-all-posts.js
   HomeFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: server.handler
-      Description: Display hello world
+      Description: Display the home page
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref WebsiteApi
+            Path: /
+            Method: GET
+
+  PostFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: server.handler
+      Description: Diaplays a post
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref WebsiteApi
+            Path: /post/{slug}
+            Method: GET
+
+  PageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: server.handler
+      Description: Display a page
       Events:
         Api:
           Type: Api
