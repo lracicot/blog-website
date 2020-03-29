@@ -1,6 +1,6 @@
-import { css } from "emotion";
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
 import { useFocused, useSelected } from "slate-react";
-import React from "react";
 
 import PropTypes from "prop-types";
 
@@ -13,7 +13,7 @@ const ImageElement = ({ attributes, children, element }) => {
         <img
           src={element.url}
           alt={element.url}
-          className={css`
+          css={css`
             display: block;
             max-width: 100%;
             max-height: 20em;

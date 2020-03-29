@@ -1,6 +1,6 @@
-import { css } from "emotion";
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
 import oneDark from "../slate-code/prism/themes/one-dark";
-import React from "react";
 import PropTypes from "prop-types";
 
 const Leaf = ({ attributes, children, leaf }) => {
@@ -20,7 +20,7 @@ const Leaf = ({ attributes, children, leaf }) => {
     children = (
       <code
         {...attributes}
-        className={css`
+        css={css`
           border: 1px solid #ccc;
           border-radius: 3px;
           font-size: 0.9em;
@@ -33,7 +33,7 @@ const Leaf = ({ attributes, children, leaf }) => {
   }
 
   if (leaf.isCode || leaf.code) {
-    attributes.className = css`
+    attributes.css = css`
       ${Object.keys(oneDark).map(prop => leaf[prop] && oneDark[prop])}
     `;
   }

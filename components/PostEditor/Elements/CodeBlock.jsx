@@ -1,6 +1,7 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
 import oneDark from "../slate-code/prism/themes/one-dark";
-import { css } from "emotion";
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 import PropTypes from "prop-types";
 
@@ -11,13 +12,13 @@ const CodeBlock = forwardRef(function CodeBlock(
   return (
     <pre
       ref={ref}
-      className={css`
+      css={css`
         ${oneDark['pre[class*="language-"]']}
       `}
     >
       <code
         {...attributes}
-        className={css`
+        css={css`
           ${oneDark['code[class*="language-"]']}
         `}
       >
