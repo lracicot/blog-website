@@ -119,12 +119,16 @@ Resources:
                 - - origin-access-identity/cloudfront/
                   - !Ref OriginAccessIdentity
         Enabled: true
-        DefaultRootObject: index.html
         DefaultCacheBehavior:
           AllowedMethods:
+            - DELETE
             - GET
             - HEAD
-          TargetOriginId: hostingHostingBucket
+            - OPTIONS
+            - PATCH
+            - POST
+            - PUT
+          TargetOriginId: apiGateway
           ForwardedValues:
             QueryString: false
           ViewerProtocolPolicy: redirect-to-https
@@ -132,36 +136,19 @@ Resources:
           MaxTTL: 31536000
           MinTTL: 60
           Compress: true
-        # DefaultCacheBehavior:
-        #   AllowedMethods:
-        #     - DELETE
-        #     - GET
-        #     - HEAD
-        #     - OPTIONS
-        #     - PATCH
-        #     - POST
-        #     - PUT
-        #   TargetOriginId: apiGateway
-        #   ForwardedValues:
-        #     QueryString: false
-        #   ViewerProtocolPolicy: redirect-to-https
-        #   DefaultTTL: 60
-        #   MaxTTL: 31536000
-        #   MinTTL: 60
-        #   Compress: true
-        # CacheBehaviors:
-        #   - PathPattern: '_next/*'
-        #     TargetOriginId: hostingHostingBucket
-        #     ViewerProtocolPolicy: redirect-to-https
-        #     AllowedMethods:
-        #       - GET
-        #       - HEAD
-        #     DefaultTTL: 86400
-        #     MaxTTL: 31536000
-        #     MinTTL: 60
-        #     Compress: true
-        #     ForwardedValues:
-        #       QueryString: false
+        CacheBehaviors:
+          - PathPattern: '_next/*'
+            TargetOriginId: hostingHostingBucket
+            ViewerProtocolPolicy: redirect-to-https
+            AllowedMethods:
+              - GET
+              - HEAD
+            DefaultTTL: 86400
+            MaxTTL: 31536000
+            MinTTL: 60
+            Compress: true
+            ForwardedValues:
+              QueryString: false
 
   DNSRecord:
     Type: AWS::Route53::RecordSet
