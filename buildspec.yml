@@ -4,13 +4,13 @@ phases:
     commands:
       - npm install
       - npm run build
+      - npm run export
   pre_build:
     commands:
       - npm prune --production
   build:
     commands:
       - aws cloudformation package --template template.yml --s3-bucket $DEPLOY_BUCKET --output-template template-export.yml
-      - cp -R .next _next
 artifacts:
   secondary-artifacts:
     WebsiteBuild:
@@ -19,4 +19,4 @@ artifacts:
         - template-export.yml
     WebsiteBuildSource:
       files:
-        - '_next/**/*'
+        - 'out/**/*'
