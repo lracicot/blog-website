@@ -8,7 +8,6 @@ const handle = app.getRequestHandler();
 const server = express();
 
 server.get("*", (req, res) => {
-  console.log(req, res);
   return handle(req, res);
 });
 

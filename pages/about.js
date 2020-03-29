@@ -1,9 +1,6 @@
 import React from "react";
+import withLayout from "../components/Layout";
 
-export default function About() {
-  return (
-    <div>
-      <p>This is the about page</p>
-    </div>
-  );
-}
+const About = () => <p>This is the about page</p>;
+
+export default withLayout(About);
