@@ -40,6 +40,7 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: Prod
+      EndpointConfiguration: REGIONAL
       Cors:
         AllowMethods: "'*'"
         AllowHeaders: "'*'"
