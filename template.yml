@@ -84,7 +84,7 @@ Resources:
             OriginPath: /Prod
             CustomOriginConfig:
               OriginProtocolPolicy: https-only
-          - DomainName: !Ref HostingBucketDomainName
+          - DomainName: !Join ['', [!Ref HostingBucketDomainName, '.s3.amazonaws.com']]
             Id: hostingHostingBucket
             S3OriginConfig:
               OriginAccessIdentity: !Join

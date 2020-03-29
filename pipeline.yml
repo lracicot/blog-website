@@ -133,8 +133,6 @@ Resources:
         Type: LINUX_CONTAINER
         Image: "aws/codebuild/standard:2.0"
         EnvironmentVariables:
-          - Name: HOSTING_BUCKET
-            Value: !Ref HostingBucket
           - Name: DEPLOY_BUCKET
             Value: !Ref DeployBucket
       Cache:
