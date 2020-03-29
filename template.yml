@@ -112,22 +112,19 @@ Resources:
               OriginProtocolPolicy: https-only
           - DomainName: !Join ['', [!Ref HostingBucketDomainName, '.s3.amazonaws.com']]
             Id: hostingHostingBucket
+            OriginPath: /out
             S3OriginConfig:
               OriginAccessIdentity: !Join
                 - ''
                 - - origin-access-identity/cloudfront/
                   - !Ref OriginAccessIdentity
         Enabled: true
+        DefaultRootObject: index.html
         DefaultCacheBehavior:
           AllowedMethods:
-            - DELETE
             - GET
             - HEAD
-            - OPTIONS
-            - PATCH
-            - POST
-            - PUT
-          TargetOriginId: apiGateway
+          TargetOriginId: hostingHostingBucket
           ForwardedValues:
             QueryString: false
           ViewerProtocolPolicy: redirect-to-https
@@ -135,19 +132,36 @@ Resources:
           MaxTTL: 31536000
           MinTTL: 60
           Compress: true
-        CacheBehaviors:
-          - PathPattern: '_next/*'
-            TargetOriginId: hostingHostingBucket
-            ViewerProtocolPolicy: redirect-to-https
-            AllowedMethods:
-              - GET
-              - HEAD
-            DefaultTTL: 86400
-            MaxTTL: 31536000
-            MinTTL: 60
-            Compress: true
-            ForwardedValues:
-              QueryString: false
+        # DefaultCacheBehavior:
+        #   AllowedMethods:
+        #     - DELETE
+        #     - GET
+        #     - HEAD
+        #     - OPTIONS
+        #     - PATCH
+        #     - POST
+        #     - PUT
+        #   TargetOriginId: apiGateway
+        #   ForwardedValues:
+        #     QueryString: false
+        #   ViewerProtocolPolicy: redirect-to-https
+        #   DefaultTTL: 60
+        #   MaxTTL: 31536000
+        #   MinTTL: 60
+        #   Compress: true
+        # CacheBehaviors:
+        #   - PathPattern: '_next/*'
+        #     TargetOriginId: hostingHostingBucket
+        #     ViewerProtocolPolicy: redirect-to-https
+        #     AllowedMethods:
+        #       - GET
+        #       - HEAD
+        #     DefaultTTL: 86400
+        #     MaxTTL: 31536000
+        #     MinTTL: 60
+        #     Compress: true
+        #     ForwardedValues:
+        #       QueryString: false
 
   DNSRecord:
     Type: AWS::Route53::RecordSet
