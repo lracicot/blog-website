@@ -121,6 +121,8 @@ Resources:
             MaxTTL: 31536000
             MinTTL: 60
             Compress: true
+            ForwardedValues:
+              QueryString: false
 
 
 
