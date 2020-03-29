@@ -110,6 +110,20 @@ Resources:
           MaxTTL: 31536000
           MinTTL: 60
           Compress: true
+        CacheBehavior:
+          - PathPattern: '_next/*'
+            TargetOriginId: hostingHostingBucket
+            ViewerProtocolPolicy: redirect-to-https
+            AllowedMethods:
+              - GET
+              - HEAD
+            DefaultTTL: 86400
+            MaxTTL: 31536000
+            MinTTL: 60
+            Compress: true
+
+
+
 
   DNSRecord:
     Type: AWS::Route53::RecordSet
