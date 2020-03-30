@@ -1,13 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
+/** @jsx jsx */
+import { Typography } from "@material-ui/core";
+import { jsx, css } from "@emotion/core";
 import fetch from "isomorphic-unfetch";
+import moment from "moment";
+import readingTime from "reading-time";
+
+import PropTypes from "prop-types";
+
 import PostEditor from "../../components/PostEditor/slate";
 import withLayout from "../../components/Layout";
 
 const Post = props => {
   return (
     <div>
-      <h1>{props.post.title}</h1>
+      <Typography variant="h1">{props.post.title}</Typography>
+      <Typography variant="subtitle1">
+        {moment(props.post.updated_at).format("MMMM DD, YYYY")}
+      </Typography>
+      <Typography variant="subtitle2">
+        {readingTime(props.post.content).text}
+      </Typography>
+      <img
+        src={`https://${props.post.header_image.public_url}`}
+        alt={props.post.title}
+        css={css`
+          width: 100%;
+        `}
+      />
       <PostEditor value={JSON.parse(props.post.content)} />
     </div>
   );

@@ -16,6 +16,12 @@ const theme = createMuiTheme({
     background: {
       default: "#fff"
     }
+  },
+  typography: {
+    h1: {
+      fontSize: "4rem",
+      fontFamily: '"Georgia", "Helvetica", "Arial", sans-serif'
+    }
   }
 });
 
