@@ -1,5 +1,5 @@
-import React from "react";
-
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
 import PropTypes from "prop-types";
 
 import CodeBlock from "./CodeBlock";
@@ -26,7 +26,16 @@ const Element = props => {
     case "image":
       return <ImageElement {...props} />;
     default:
-      return <p {...attributes}>{children}</p>;
+      return (
+        <p
+          css={css`
+            font-size: 21px;
+          `}
+          {...attributes}
+        >
+          {children}
+        </p>
+      );
   }
 };
 

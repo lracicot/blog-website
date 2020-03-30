@@ -12,7 +12,11 @@ import withLayout from "../../components/Layout";
 
 const Post = props => {
   return (
-    <div>
+    <div
+      css={css`
+        padding: 5px;
+      `}
+    >
       <Typography variant="h1">{props.post.title}</Typography>
       <Typography variant="subtitle1">
         {moment(props.post.updated_at).format("MMMM DD, YYYY")}
