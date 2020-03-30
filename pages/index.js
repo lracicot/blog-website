@@ -1,9 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import fetch from "isomorphic-unfetch";
-import withLayout from "../components/Layout";
-
 import Link from "next/link";
+import React from "react";
+import fetch from "isomorphic-unfetch";
+
+import PropTypes from "prop-types";
+
+import LatestPost from "../components/Post/LatestPost";
+import withLayout from "../components/Layout";
 
 const PostLink = props => (
   <Link href={`/post/[slug]`} as={`/post/${props.slug}`}>
@@ -18,7 +20,7 @@ PostLink.propTypes = {
 
 const Index = props => (
   <div>
-    <p>This is the home page</p>
+    <LatestPost post={props.posts[0]} />
     <ul>
       {props.posts.map(post => (
         <li key={post.uuid}>
@@ -31,10 +33,11 @@ const Index = props => (
 
 Index.getInitialProps = async function() {
   const res = await fetch("https://sam-blog.louisracicot.net/post/published");
+  const posts = await res.json();
 
-  return {
-    posts: await res.json()
-  };
+  console.log(posts);
+
+  return { posts };
 };
 
 Index.propTypes = {

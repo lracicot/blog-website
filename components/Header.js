@@ -26,7 +26,7 @@ const titleStyle = {
 };
 
 const Header = () => (
-  <AppBar position="static">
+  <AppBar position="static" style={{ marginBottom: 50 }}>
     <Grid container justify="center">
       <Grid item xs={12} md={7}>
         <Toolbar>
