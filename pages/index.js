@@ -25,13 +25,9 @@ const Index = props => {
 
   return (
     <div>
-      <PostLink slug={posts[0].slug}>
-        <LatestPost key={posts[0].uuid} post={posts[0]} />
-      </PostLink>
+      <LatestPost key={posts[0].uuid} post={posts[0]} />
       {posts.slice(1, posts.length).map(post => (
-        <PostLink slug={post.slug} key={post.uuid}>
-          <PostListing post={post} />
-        </PostLink>
+        <PostListing post={post} key={post.uuid} />
       ))}
     </div>
   );
