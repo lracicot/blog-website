@@ -29,7 +29,7 @@ const Element = props => {
       return (
         <p
           css={css`
-            font-size: 21px;
+            font-size: 18px;
           `}
           {...attributes}
         >
