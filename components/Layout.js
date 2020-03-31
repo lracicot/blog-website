@@ -1,6 +1,7 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
 
+import Footer from "./Layout/Footer";
 import Header from "./Header";
 
 const withLayout = Page => {
@@ -13,6 +14,7 @@ const withLayout = Page => {
           <Page {...props} />
         </Grid>
       </Grid>
+      <Footer />
     </div>
   );
   layout.getInitialProps = ctx => {
