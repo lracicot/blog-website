@@ -28,6 +28,7 @@
     "prismjs": "^1.19.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-ga": "^2.7.0",
     "reading-time": "^1.2.0",
     "slate": "^0.57.1",
     "slate-react": "^0.57.1"

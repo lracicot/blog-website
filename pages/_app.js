@@ -4,6 +4,7 @@ import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { DefaultSeo } from "next-seo";
+import { initGA, logPageView } from "../utils/analytics";
 import theme from "../theme";
 
 export default class MyApp extends App {
@@ -13,6 +14,11 @@ export default class MyApp extends App {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
+    if (!window.GA_INITIALIZED) {
+      initGA();
+      window.GA_INITIALIZED = true;
+    }
+    logPageView();
   }
 
   render() {
