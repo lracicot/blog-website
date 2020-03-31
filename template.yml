@@ -161,6 +161,18 @@ Resources:
             Compress: true
             ForwardedValues:
               QueryString: false
+          - PathPattern: '*.xml'
+            TargetOriginId: hostingHostingBucket
+            ViewerProtocolPolicy: redirect-to-https
+            AllowedMethods:
+              - GET
+              - HEAD
+            DefaultTTL: 86400
+            MaxTTL: 31536000
+            MinTTL: 60
+            Compress: true
+            ForwardedValues:
+              QueryString: false
 
   DNSRecord:
     Type: AWS::Route53::RecordSet

@@ -5,6 +5,7 @@ phases:
       - npm install
       - npm run build
       - npm run export
+      - npm run sitemap
   pre_build:
     commands:
       - npm prune --production
