@@ -21,6 +21,11 @@ const theme = createMuiTheme({
     h1: {
       fontSize: "4rem",
       fontFamily: '"Georgia", "Helvetica", "Arial", sans-serif'
+    },
+    h2: {
+      marginTop: 30,
+      fontSize: "2rem",
+      marginBottom: 20
     }
   }
 });

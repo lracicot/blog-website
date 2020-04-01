@@ -6,6 +6,10 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { DefaultSeo } from "next-seo";
 import { initGA, logPageView } from "../utils/analytics";
 import theme from "../theme";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+
+library.add(fab);
 
 export default class MyApp extends App {
   componentDidMount() {
