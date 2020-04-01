@@ -26,7 +26,7 @@ const Post = props => {
           title: props.post.title,
           description: props.post.description,
           images: [{ url: `https://${props.post.header_image.public_url}` }],
-          keywords: props.post.tags.join(",")
+          keywords: (props.post.tags || []).join(",")
         }}
       />
       <Typography variant="h1">{props.post.title}</Typography>
