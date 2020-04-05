@@ -197,7 +197,7 @@ Resources:
     Properties:
       DomainName: !Ref DomainName
       RestApiId: !Ref WebsiteApi
-      Stage: Prod
+      Stage: !Ref WebsiteApi.Stage
 
   # DNSRecord:
   #   Type: AWS::Route53::RecordSet

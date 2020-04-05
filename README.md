@@ -40,5 +40,5 @@ aws cloudformation deploy --capabilities CAPABILITY_IAM \
     StackName=blog-website-prod \
     BranchName=develop \
     DomainName=louisracicot.com \
-    CertificateArn=	arn:aws:acm:us-east-1:281217159305:certificate/769aface-75aa-482a-92e8-b47f764fd5b3
+    CertificateArn=arn:aws:acm:us-east-1:281217159305:certificate/769aface-75aa-482a-92e8-b47f764fd5b3
 ```
