@@ -23,14 +23,18 @@ PostLink.propTypes = {
 const Index = props => {
   const { posts } = props;
 
-  return (
-    <div>
-      <LatestPost key={posts[0].uuid} post={posts[0]} />
-      {posts.slice(1, posts.length).map(post => (
-        <PostListing post={post} key={post.uuid} />
-      ))}
-    </div>
-  );
+  if (posts.length) {
+    return (
+      <div>
+        <LatestPost key={posts[0].uuid} post={posts[0]} />
+        {posts.slice(1, posts.length).map(post => (
+          <PostListing post={post} key={post.uuid} />
+        ))}
+      </div>
+    );
+  }
+
+  return <p>No posts yet. Come back soon!</p>;
 };
 
 Index.getInitialProps = async function() {

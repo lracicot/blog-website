@@ -39,7 +39,7 @@ aws cloudformation deploy --capabilities CAPABILITY_IAM \
     RepositoryName=blog-website \
     RepositoryStack=blog-website-repository \
     StackName=blog-website-prod \
-    BranchName=develop \
+    BranchName=master \
     DomainName=louisracicot.com \
     ApiUrl=api.blog.louisracicot.net \
     CertificateArn=arn:aws:acm:us-east-1:281217159305:certificate/769aface-75aa-482a-92e8-b47f764fd5b3
