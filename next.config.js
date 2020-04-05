@@ -10,7 +10,7 @@ module.exports = {
       "/": { page: "/" },
       "/about": { page: "/about" }
     };
-    const res = await fetch("https://sam-blog.louisracicot.net/post/published");
+    const res = await fetch(`https://${process.env.API_URL}/post/published`);
     const posts = await res.json();
 
     posts.forEach(post => {
