@@ -2,6 +2,9 @@ const fetch = require("isomorphic-unfetch");
 
 module.exports = {
   exportTrailingSlash: true,
+  env: {
+    API_URL: process.env.API_URL
+  },
   exportPathMap: async function() {
     const paths = {
       "/": { page: "/" },

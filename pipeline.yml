@@ -20,6 +20,9 @@ Parameters:
   CertificateArn:
     Type: String
 
+  ApiUrl:
+    Type: String
+
 Resources:
   PipelineBucket:
     Type: AWS::S3::Bucket
@@ -131,6 +134,8 @@ Resources:
         EnvironmentVariables:
           - Name: DEPLOY_BUCKET
             Value: !Ref DeployBucket
+          - Name: API_URL
+            Value: !Ref ApiUrl
       Cache:
         Type: LOCAL
         Modes:

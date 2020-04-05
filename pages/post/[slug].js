@@ -52,9 +52,7 @@ Post.getInitialProps = async function(context) {
   const {
     query: { slug }
   } = context;
-  const res = await fetch(
-    `https://sam-blog.louisracicot.net/post/slug/${slug}`
-  );
+  const res = await fetch(`https://${process.env.API_URL}/post/slug/${slug}`);
 
   return {
     post: await res.json()

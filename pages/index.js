@@ -34,7 +34,7 @@ const Index = props => {
 };
 
 Index.getInitialProps = async function() {
-  const res = await fetch("https://sam-blog.louisracicot.net/post/published");
+  const res = await fetch(`https://${process.env.API_URL}/post/published`);
   const posts = await res.json();
 
   return {
