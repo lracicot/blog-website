@@ -183,7 +183,7 @@ Resources:
       AliasTarget:
         HostedZoneId: Z2FDTNDATAQYW2 # This is always the hosted zone ID when you create an alias record that routes traffic to a CloudFront distribution.
         DNSName: !GetAtt CloudFrontDistribution.DomainName
-        EvaluateTargetHealth: true
+        EvaluateTargetHealth: false
 
   # WebsiteDomainName:
   #   Type: AWS::ApiGateway::DomainName
@@ -191,13 +191,13 @@ Resources:
   #     CertificateArn: !Ref CertificateArn
   #     DomainName: !Ref DomainName
 
-  WebsiteApiBasePathMapping:
-    # DependsOn: WebsiteDomainName
-    Type: AWS::ApiGateway::BasePathMapping
-    Properties:
-      DomainName: !Ref DomainName
-      RestApiId: !Ref WebsiteApi
-      Stage: !Ref WebsiteApi.Stage
+  # WebsiteApiBasePathMapping:
+  #   # DependsOn: WebsiteDomainName
+  #   Type: AWS::ApiGateway::BasePathMapping
+  #   Properties:
+  #     DomainName: !Ref DomainName
+  #     RestApiId: !Ref WebsiteApi
+  #     Stage: !Ref WebsiteApi.Stage
 
   # DNSRecord:
   #   Type: AWS::Route53::RecordSet
