@@ -23,6 +23,9 @@ Parameters:
   ApiUrl:
     Type: String
 
+  HostedZoneId:
+    Type: String
+
 Resources:
   PipelineBucket:
     Type: AWS::S3::Bucket
@@ -112,7 +115,7 @@ Resources:
                 ActionMode: CREATE_UPDATE
                 Capabilities: CAPABILITY_AUTO_EXPAND,CAPABILITY_NAMED_IAM
                 RoleArn: !GetAtt CloudFormationRole.Arn
-                ParameterOverrides: !Sub '{"DomainName":"${DomainName}","CertificateArn":"${CertificateArn}","HostingBucketDomainName":"${HostingBucket}"}'
+                ParameterOverrides: !Sub '{"DomainName":"${DomainName}","CertificateArn":"${CertificateArn}","HostingBucketDomainName":"${HostingBucket}","HostedZoneId":"${HostedZoneId}"}'
                 StackName: !Ref StackName
                 TemplatePath: 'WebsiteBuild::template-export.yml'
 
