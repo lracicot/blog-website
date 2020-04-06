@@ -12,7 +12,6 @@ Parameters:
     Type: String
   CertificateArn:
     Type: String
-    Default: arn:aws:acm:us-east-1:281217159305:certificate/824fa586-f47b-41a4-a345-2a86c7c15416
 
 Globals:
   Function:

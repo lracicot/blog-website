@@ -114,7 +114,6 @@ Resources:
                 RoleArn: !GetAtt CloudFormationRole.Arn
                 ParameterOverrides: !Sub '{"DomainName":"${DomainName}","CertificateArn":"${CertificateArn}","HostingBucketDomainName":"${HostingBucket}"}'
                 StackName: !Ref StackName
-                # TemplateConfiguration: 'WebsiteBuild::parameters.json'
                 TemplatePath: 'WebsiteBuild::template-export.yml'
 
   BuildStage:

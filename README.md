@@ -42,5 +42,5 @@ aws cloudformation deploy --capabilities CAPABILITY_IAM \
     BranchName=master \
     DomainName=louisracicot.com \
     ApiUrl=api.blog.louisracicot.net \
-    CertificateArn=arn:aws:acm:us-east-1:281217159305:certificate/769aface-75aa-482a-92e8-b47f764fd5b3
+    CertificateArn=arn:aws:acm:us-east-1:281217159305:certificate/6dcaa44c-bffd-47c5-be9d-3a577cd37639
 ```
