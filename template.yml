@@ -119,7 +119,7 @@ Resources:
           ForwardedValues:
             QueryString: false
           ViewerProtocolPolicy: redirect-to-https
-          DefaultTTL: 3600
+          DefaultTTL: 86400
           MaxTTL: 31536000
           MinTTL: 60
           Compress: true
