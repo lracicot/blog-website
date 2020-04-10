@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
 const LatestPost = props => {
   const classes = useStyles();
   const { post } = props;
+  const imageUrl = post.header_image
+    ? `https://${post.header_image.public_url}`
+    : null;
 
   return (
     <Card className={classes.root}>
@@ -43,11 +46,11 @@ const LatestPost = props => {
               title={post.title}
               subheader={moment(post.updated_at).format("MMMM DD, YYYY")}
             />
-            <CardMedia
-              className={classes.media}
-              image={`https://${post.header_image.public_url}`}
-              title="Paella dish"
-            />
+            {imageUrl ? (
+              <CardMedia className={classes.media} image={imageUrl} />
+            ) : (
+              ""
+            )}
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
                 {post.description}

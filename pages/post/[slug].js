@@ -12,6 +12,11 @@ import PostEditor from "../../components/PostEditor/slate";
 import withLayout from "../../components/Layout";
 
 const Post = props => {
+  const { post } = props;
+  const imageUrl = post.header_image
+    ? `https://${post.header_image.public_url}`
+    : null;
+
   return (
     <div
       css={css`
@@ -19,31 +24,35 @@ const Post = props => {
       `}
     >
       <NextSeo
-        title={props.post.title}
-        description={props.post.description}
+        title={post.title}
+        description={post.description}
         openGraph={{
-          url: `https://louisracicot.com/post/${props.post.slug}`,
-          title: props.post.title,
-          description: props.post.description,
-          images: [{ url: `https://${props.post.header_image.public_url}` }],
-          keywords: (props.post.tags || []).join(",")
+          url: `https://louisracicot.com/post/${post.slug}`,
+          title: post.title,
+          description: post.description,
+          images: [{ url: imageUrl }],
+          keywords: (post.tags || []).join(",")
         }}
       />
-      <Typography variant="h1">{props.post.title}</Typography>
+      <Typography variant="h1">{post.title}</Typography>
       <Typography variant="subtitle1">
-        {moment(props.post.updated_at).format("MMMM DD, YYYY")}
+        {moment(post.updated_at).format("MMMM DD, YYYY")}
       </Typography>
       <Typography variant="subtitle2">
-        {readingTime(props.post.content).text}
+        {readingTime(post.content).text}
       </Typography>
-      <img
-        src={`https://${props.post.header_image.public_url}`}
-        alt={props.post.title}
-        css={css`
-          width: 100%;
-        `}
-      />
-      <PostEditor value={JSON.parse(props.post.content)} />
+      {imageUrl ? (
+        <img
+          src={imageUrl}
+          alt={post.title}
+          css={css`
+            width: 100%;
+          `}
+        />
+      ) : (
+        ""
+      )}
+      <PostEditor value={JSON.parse(post.content)} />
     </div>
   );
 };
