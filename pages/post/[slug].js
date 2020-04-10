@@ -41,6 +41,20 @@ const Post = props => {
       <Typography variant="subtitle2">
         {readingTime(post.content).text}
       </Typography>
+      {post.abstract ? (
+        <Typography
+          variant="subtitle1"
+          css={css`
+            color: #888;
+            font-style: italic;
+            font-size: 21px;
+          `}
+        >
+          {post.abstract}
+        </Typography>
+      ) : (
+        ""
+      )}
       {imageUrl ? (
         <img
           src={imageUrl}
