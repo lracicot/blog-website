@@ -18,7 +18,16 @@ const Element = props => {
     case "heading-two":
       return <h2 {...attributes}>{children}</h2>;
     case "list-item":
-      return <li {...attributes}>{children}</li>;
+      return (
+        <li
+          {...attributes}
+          css={css`
+            font-size: 18px;
+          `}
+        >
+          {children}
+        </li>
+      );
     case "numbered-list":
       return <ol {...attributes}>{children}</ol>;
     case "code-block":
