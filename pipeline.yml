@@ -102,6 +102,7 @@ Resources:
                 BucketName: !Ref HostingBucket
                 Extract: true
                 CannedACL: public-read
+                CacheControl: "max-age=86400"
             - Name: DeployAction
               ActionTypeId:
                 Category: Deploy
