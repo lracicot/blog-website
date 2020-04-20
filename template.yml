@@ -121,7 +121,7 @@ Resources:
           ViewerProtocolPolicy: redirect-to-https
           DefaultTTL: 86400
           MaxTTL: 31536000
-          MinTTL: 60
+          MinTTL: 86400
           Compress: true
         CacheBehaviors:
           - PathPattern: '_next/*'
@@ -132,7 +132,7 @@ Resources:
               - HEAD
             DefaultTTL: 86400
             MaxTTL: 31536000
-            MinTTL: 60
+            MinTTL: 86400
             Compress: true
             ForwardedValues:
               QueryString: false
@@ -156,7 +156,7 @@ Resources:
               - HEAD
             DefaultTTL: 86400
             MaxTTL: 31536000
-            MinTTL: 60
+            MinTTL: 86400
             Compress: true
             ForwardedValues:
               QueryString: false
