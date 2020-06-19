@@ -10,7 +10,20 @@ const Element = props => {
 
   switch (element.type) {
     case "block-quote":
-      return <blockquote {...attributes}>{children}</blockquote>;
+      return (
+        <blockquote
+          css={css`
+            border-left: 4px solid lightgray;
+            padding-left: 10px;
+            color: gray;
+            font-size: 18px;
+            text-align: justify;
+          `}
+          {...attributes}
+        >
+          {children}
+        </blockquote>
+      );
     case "bulleted-list":
       return <ul {...attributes}>{children}</ul>;
     case "heading-one":
@@ -39,6 +52,7 @@ const Element = props => {
         <p
           css={css`
             font-size: 18px;
+            text-align: justify;
           `}
           {...attributes}
         >

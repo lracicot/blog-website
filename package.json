@@ -35,7 +35,8 @@
     "react-ga": "^2.7.0",
     "reading-time": "^1.2.0",
     "slate": "^0.57.1",
-    "slate-react": "^0.57.1"
+    "slate-react": "^0.57.1",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

@@ -47,7 +47,7 @@ const Post = props => {
           css={css`
             color: #888;
             font-style: italic;
-            font-size: 21px;
+            text-align: justify;
           `}
         >
           {post.abstract}

@@ -74,6 +74,32 @@ Resources:
             Path: /{page}
             Method: GET
 
+  PageHealthCheckFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: healthcheck.handler
+      Description: Ping all pages from the sitemap to warm the cache
+      Environment:
+        Variables:
+          WEBSITE_URL: !Ref DomainName 
+
+  HealthCheckRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "HealthCheckRule"
+      ScheduleExpression: "rate(1 hour)"
+      State: "ENABLED"
+      Targets:
+        - Arn: !GetAtt PageHealthCheckFunction.Arn
+
+  PermissionForEventsToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref PageHealthCheckFunction
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt PageHealthCheckFunction.Arn
+
   # Domain name setup
   OriginAccessIdentity:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
