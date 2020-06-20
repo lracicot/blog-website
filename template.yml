@@ -81,11 +81,12 @@ Resources:
       Description: Ping all pages from the sitemap to warm the cache
       Environment:
         Variables:
-          WEBSITE_URL: !Ref DomainName 
+          WEBSITE_URL: !Ref DomainName
 
   HealthCheckRule:
     Type: AWS::Events::Rule
     Properties:
+      Id: "HealthCheckRule"
       Description: "HealthCheckRule"
       ScheduleExpression: "rate(1 hour)"
       State: "ENABLED"
