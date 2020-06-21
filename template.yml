@@ -91,6 +91,7 @@ Resources:
       State: "ENABLED"
       Targets:
         - Arn: !GetAtt PageHealthCheckFunction.Arn
+          Id: PageHealthCheckFunction
 
   PermissionForEventsToInvokeLambda:
     Type: AWS::Lambda::Permission
