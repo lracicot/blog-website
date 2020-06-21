@@ -86,7 +86,6 @@ Resources:
   HealthCheckRule:
     Type: AWS::Events::Rule
     Properties:
-      Id: "HealthCheckRule"
       Description: "HealthCheckRule"
       ScheduleExpression: "rate(1 hour)"
       State: "ENABLED"
