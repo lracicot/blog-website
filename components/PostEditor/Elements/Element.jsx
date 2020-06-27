@@ -47,6 +47,12 @@ const Element = props => {
       return <CodeBlock {...attributes}>{children}</CodeBlock>;
     case "image":
       return <ImageElement {...props} />;
+    case "link":
+      return (
+        <a {...attributes} href={element.url}>
+          {children}
+        </a>
+      );
     default:
       return (
         <p
