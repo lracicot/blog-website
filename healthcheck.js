@@ -15,7 +15,8 @@ exports.handler = () => {
             console.error(result);
           } else {
             for (const page of result.urlset.url) {
-              console.log(page);
+              console.log(page.loc);
+              console.log(page.loc[0]);
             }
             // https.get(`${page.}`);
           }
