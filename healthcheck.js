@@ -10,12 +10,14 @@ exports.handler = () => {
         data += data_.toString();
       });
       res.on("end", () => {
-        console.log("data", data);
         parser.parseString(data, (err, result) => {
           if (err) {
             console.error(result);
           } else {
-            console.log(result);
+            for (const page of result.url) {
+              console.log(page);
+            }
+            // https.get(`${page.}`);
           }
         });
       });
