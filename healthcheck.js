@@ -4,7 +4,7 @@ const parser = new xml2js.Parser();
 
 exports.handler = () => {
   let data = "";
-  https.get(`${process.env.WEBSITE_URL}/sitemap.xml`, res => {
+  https.get(`https://${process.env.WEBSITE_URL}/sitemap.xml`, res => {
     if (res.statusCode >= 200 && res.statusCode < 400) {
       res.on("data", data_ => {
         data += data_.toString();
