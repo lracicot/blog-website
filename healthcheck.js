@@ -14,7 +14,7 @@ exports.handler = () => {
           if (err) {
             console.error(result);
           } else {
-            for (const page of result.url) {
+            for (const page of result.urlset.url) {
               console.log(page);
             }
             // https.get(`${page.}`);
