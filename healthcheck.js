@@ -15,10 +15,14 @@ exports.handler = () => {
             console.error(result);
           } else {
             for (const page of result.urlset.url) {
-              console.log(page.loc);
-              console.log(page.loc[0]);
+              https.get(page.loc[0], res => {
+                if (res.statusCode < 200 && res.statusCode >= 400) {
+                  console.error(`FAILED ${page.loc[0]}`);
+                } else {
+                  console.log(`SUCCESS ${page.loc[0]}`);
+                }
+              });
             }
-            // https.get(`${page.}`);
           }
         });
       });
