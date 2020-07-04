@@ -137,6 +137,8 @@ Resources:
         EnvironmentVariables:
           - Name: DEPLOY_BUCKET
             Value: !Ref DeployBucket
+          - Name: WEBSITE_URL
+            Value: !Sub 'https://${DomainName}'
           - Name: API_URL
             Value: !Ref ApiUrl
       Cache:
