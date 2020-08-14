@@ -86,17 +86,18 @@ Resources:
         Variables:
           CF_DISTRIBUTION_ID: !Ref CloudFrontDistribution
       Policies:
-        - PolicyName: root
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Effect: Allow
-                Action:
-                  - "cloudfront:CreateInvalidation"
-                  - "cloudfront:GetInvalidation"
-                  - "cloudfront:ListInvalidations"
-                Resource:
-                  - !GetAtt CloudFrontDistribution.Arn
+        - InvalidationPolicy:
+            PolicyName: root
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - "cloudfront:CreateInvalidation"
+                    - "cloudfront:GetInvalidation"
+                    - "cloudfront:ListInvalidations"
+                  Resource:
+                    - !GetAtt CloudFrontDistribution.Arn
       Events:
         ExportTableEventSource:
           Type: DynamoDB
