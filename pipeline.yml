@@ -23,6 +23,12 @@ Parameters:
   ApiUrl:
     Type: String
 
+  ApiUrl:
+    Type: String
+
+  PostTableStreamArn:
+    Type: String
+
   HostedZoneId:
     Type: String
 
@@ -116,7 +122,7 @@ Resources:
                 ActionMode: CREATE_UPDATE
                 Capabilities: CAPABILITY_AUTO_EXPAND,CAPABILITY_NAMED_IAM
                 RoleArn: !GetAtt CloudFormationRole.Arn
-                ParameterOverrides: !Sub '{"DomainName":"${DomainName}","CertificateArn":"${CertificateArn}","HostingBucketDomainName":"${HostingBucket}","HostedZoneId":"${HostedZoneId}"}'
+                ParameterOverrides: !Sub '{"DomainName":"${DomainName}","CertificateArn":"${CertificateArn}","HostingBucketDomainName":"${HostingBucket}","HostedZoneId":"${HostedZoneId}","PostTableStreamArn":"${PostTableStreamArn}"}'
                 StackName: !Ref StackName
                 TemplatePath: 'WebsiteBuild::template-export.yml'
 
