@@ -93,7 +93,7 @@ Resources:
               - "cloudfront:GetInvalidation"
               - "cloudfront:ListInvalidations"
             Resource:
-              - !GetAtt CloudFrontDistribution.Arn
+              - '*'
       Events:
         ExportTableEventSource:
           Type: DynamoDB
