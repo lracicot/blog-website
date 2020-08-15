@@ -264,6 +264,8 @@ Resources:
                   - lambda:UpdateFunctionCode
                   - lambda:AddPermission
                   - lambda:RemovePermission
+                  - lambda:CreateEventSourceMapping
+                  - lambda:GetEventSourceMapping
                 Resource: "*"
               - Effect: Allow
                 Action:
