@@ -27,6 +27,7 @@ class CacheController {
 }
 
 exports.handler = (cacheController => async event => {
+  console.log(event);
   const newPostsUrl = event.Records.filter(
     record =>
       record.eventName === "INSERT" && record.eventSource === "aws:dynamodb"
