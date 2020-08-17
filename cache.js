@@ -8,7 +8,6 @@ class CacheController {
   }
 
   invalidateUrl(urls) {
-    console.log(urls);
     return new Promise((resolve, reject) => {
       cloudfront.createInvalidation(
         {
@@ -43,7 +42,7 @@ exports.handler = (cacheController => async event => {
   ).map(record => record.dynamodb.NewImage.slug.S);
 
   if (updatedPostsUrl.length) {
-    await cacheController.invalidateUrl([updatedPostsUrl]);
+    await cacheController.invalidateUrl(updatedPostsUrl);
   }
 
   const removedPostsUrl = event.Records.filter(
