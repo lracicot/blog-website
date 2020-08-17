@@ -8,12 +8,13 @@ class CacheController {
   }
 
   invalidateUrl(urls) {
+    console.log(urls);
     return new Promise((resolve, reject) => {
       cloudfront.createInvalidation(
         {
           DistributionId: this.distributionId,
           InvalidationBatch: {
-            CallerReference: Date.now(),
+            CallerReference: Date.now().toString(),
             Paths: {
               Quantity: urls.length,
               Items: urls
